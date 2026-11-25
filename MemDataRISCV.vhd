@@ -2,8 +2,8 @@
 ----------------------------------------------------------------------
 -- Asignatura: Estructura de Computadores.
 -- Fichero: MemDataRISCV.vhd
--- Descripción: Memoria de datos para el RISC-V
--- Fichero de apoyo para: Práctica: 4. Ejercicio: 1.
+-- Descripciï¿½n: Memoria de datos para el RISC-V
+-- Fichero de apoyo para: Prï¿½ctica: 4. Ejercicio: 1.
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ architecture Simple of MemDataRISCV is
 
 begin
 
-	-- Proceso para la escritura síncrona en la memoria de datos.
+	-- Proceso para la escritura sï¿½ncrona en la memoria de datos.
 EscrituraMemData: process(all)
 	begin
 		-- Con el reset activo, se inicializa a ceros todas las posiciones de la memoria de datos. 
@@ -40,22 +40,21 @@ EscrituraMemData: process(all)
 			memData(i) <= (others => '0');
 		end loop;
 
-		-- Código para la escritura de los datos iniciales quedeben ser cargados previamente en memoria antes de la ejecución del programa.
+		-- Cï¿½digo para la escritura de los datos iniciales quedeben ser cargados previamente en memoria antes de la ejecuciï¿½n del programa.
 		
-		-- Se cargan a partir de una dirección determinada, en RARS dada por la directiva .data. En este caso en la dirección 0x00002000.
-		-- Para que se entienda como un índice entero, la dirección 0x2000 se debe escribir como 16#2000#.
-		-- Como cada dato ocupa 4 bytes, el índice entero debe ir dividido por 4.
+		-- Se cargan a partir de una direcciï¿½n determinada, en RARS dada por la directiva .data. En este caso en la direcciï¿½n 0x00002000.
+		-- Para que se entienda como un ï¿½ndice entero, la direcciï¿½n 0x2000 se debe escribir como 16#2000#.
+		-- Como cada dato ocupa 4 bytes, el ï¿½ndice entero debe ir dividido por 4.
  
 --      *************************************************
 				memData(16#2000#/4) <= x"0000000A";
-
 --      *************************************************
 		
 		
-	-- Código para la escritura síncrona en la memoria de datos durante la ejecución del programa (instrucción sw)	
+	-- Cï¿½digo para la escritura sï¿½ncrona en la memoria de datos durante la ejecuciï¿½n del programa (instrucciï¿½n sw)	
 	elsif rising_edge(Clk) then
 		-- En este caso se escribe por flanco de bajada para que sea
-		-- a mitad de ciclo y todas las señales estén estables
+		-- a mitad de ciclo y todas las seï¿½ales estï¿½n estables
 		if MemDataWE = '1' then
 			memData((to_integer(MemDataAddr)/4)) <= MemDataDataWrite;
 		end if;
@@ -66,7 +65,7 @@ EscrituraMemData: process(all)
 	-- Cada vez se devuelve una palabra completa, que ocupa 4 bytes
 LecturaMemData: process(all)
 	begin
-		-- Parte baja de la memoria sí está, se lee tal cual
+		-- Parte baja de la memoria sï¿½ estï¿½, se lee tal cual
 		if MemDataAddr(31 downto 16) = x"0000" then
 			MemDataDataRead <= MemData((to_integer(MemDataAddr)/4));
 		else -- Parte alta no existe, se leen ceros
