@@ -30,7 +30,7 @@ begin
 			when "10" =>
 				ExtSigno <= (18 downto 0 => Instr_Sig(31)) & Instr_Sig(31) & Instr_Sig(7) & Instr_Sig(30 downto 25) & Instr_Sig(11 downto 8) & '0';
 			when others =>
-				ExtSigno <= (18 downto 0 => Instr_Sig(31)) & Instr_Sig(31) & Instr_Sig(19 downto 12) & Instr_Sig(20) & Instr_Sig(30 downto 21) & '0';
+				ExtSigno <= (10 downto 0 => Instr_Sig(31)) & Instr_Sig(31) & Instr_Sig(19 downto 12) & Instr_Sig(20) & Instr_Sig(30 downto 21) & '0';
 		end case;
 	end process;
 end behavior;
